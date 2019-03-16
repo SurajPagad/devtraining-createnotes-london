@@ -9,19 +9,15 @@
 	}
 	c.selectItem = function(idx) {
 		var id = c.data.notes[idx].sys_id;
+		c.data.pos = idx;
 		console.log('Note ID: ' + id);
 		$rootScope.noteID = id;
-		$rootScope.$emit('selectNote', id);
+		$rootScope.$emit('selectNoteEvent', id);
 	}
-	$rootScope.$on('updateNoteEvent', function(event,data1) {
-		console.log('updateNoteEvent Fired');
-		for(var pro in c.data.notes){
-			if(c.data.notes[pro].sys_id == $rootScope.noteID){
-				console.log('updateNoteEvent Fired inside loop '+data1.note);
-				c.data.notes[pro].note = data1.note;
-				c.data.notes[pro].title = data1.title;
-			}
-		}
+	$rootScope.$on('updateNoteEvent', function(event,data) {
+		console.log('updateNoteEvent Fired inside loop '+data.note);
+		c.data.notes[c.data.pos].note = data.note;
+		c.data.notes[c.data.pos].title = data.title;
 	});
 	//c.server.update();
 }]]></client_script>
@@ -62,14 +58,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2019-03-15 09:10:42</sys_created_on>
         <sys_id>48af69c8db503300ab1f7dda8c9619fe</sys_id>
-        <sys_mod_count>21</sys_mod_count>
+        <sys_mod_count>25</sys_mod_count>
         <sys_name>Notes List</sys_name>
         <sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package>
         <sys_policy/>
         <sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope>
         <sys_update_name>sp_widget_48af69c8db503300ab1f7dda8c9619fe</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2019-03-15 10:53:32</sys_updated_on>
+        <sys_updated_on>2019-03-15 12:42:21</sys_updated_on>
         <template><![CDATA[<div>
   <div class="panel panel-default">
     <div class="panel-heading clearfix">
